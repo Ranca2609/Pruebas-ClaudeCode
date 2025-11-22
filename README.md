@@ -1,29 +1,59 @@
-# Backend de Gestión de Inventario
+# Sistema de Gestión de Inventario
 
-Sistema backend completo para gestión de productos e inventarios desarrollado con Node.js, TypeScript y SQLite.
+Sistema completo de gestión de productos e inventarios con backend Node.js y frontend React.
 
 ## Características
 
-- ✅ CRUD completo de productos
+### Backend
+- ✅ API RESTful completa
+- ✅ CRUD de productos
 - ✅ Gestión de inventario en tiempo real
 - ✅ Registro de movimientos de stock (entradas, salidas, ajustes)
 - ✅ Alertas de stock bajo
 - ✅ Búsqueda de productos
-- ✅ API RESTful
-- ✅ Base de datos SQLite
+- ✅ Base de datos SQLite con vistas y triggers
 - ✅ TypeScript para type safety
+
+### Frontend
+- ✅ Interfaz web moderna con React + Vite
+- ✅ Dashboard con estadísticas en tiempo real
+- ✅ Gestión completa de productos (crear, editar, eliminar, buscar)
+- ✅ Control de inventario con alertas visuales
+- ✅ Registro de movimientos de stock
+- ✅ Historial completo de operaciones
+- ✅ Diseño responsive (móvil, tablet, desktop)
 
 ## Requisitos
 
 - Node.js (v16 o superior)
 - npm o yarn
 
-## Instalación
+## Inicio Rápido
 
-1. Clonar el repositorio:
+### Backend
+
+1. Instalar dependencias del backend:
 ```bash
-git clone <repository-url>
-cd Pruebas-ClaudeCode
+npm install
+```
+
+2. Configurar variables de entorno (opcional):
+```bash
+cp .env.example .env
+```
+
+3. Iniciar el servidor backend:
+```bash
+npm run dev
+```
+
+El servidor estará disponible en `http://localhost:3000`
+
+### Frontend
+
+1. Ir a la carpeta frontend:
+```bash
+cd frontend
 ```
 
 2. Instalar dependencias:
@@ -31,34 +61,21 @@ cd Pruebas-ClaudeCode
 npm install
 ```
 
-3. Configurar variables de entorno:
-```bash
-cp .env.example .env
-```
-
-4. Editar `.env` si es necesario (opcional):
-```
-PORT=3000
-DB_PATH=./database.db
-```
-
-## Uso
-
-### Modo Desarrollo
+3. Iniciar la aplicación web:
 ```bash
 npm run dev
 ```
 
-### Modo Producción
-```bash
-# Compilar TypeScript
-npm run build
+La aplicación estará disponible en `http://localhost:5173`
 
-# Ejecutar
-npm start
+### Opción: Cargar datos de ejemplo
+
+```bash
+# Desde la raíz del proyecto
+sqlite3 database.db < database-scripts/seed.sql
 ```
 
-El servidor estará disponible en `http://localhost:3000`
+Ahora puedes acceder a `http://localhost:5173` para ver la aplicación web funcionando.
 
 ## Scripts de Base de Datos
 
@@ -80,23 +97,32 @@ Ver [database-scripts/README.md](./database-scripts/README.md) para documentaci�
 ## Estructura del Proyecto
 
 ```
-src/
-├── controllers/          # Lógica de negocio
-│   ├── productController.ts
-│   └── inventoryController.ts
-├── routes/              # Definición de rutas
-│   ├── productRoutes.ts
-│   └── inventoryRoutes.ts
-├── database/            # Configuración de base de datos
-│   └── db.ts
-├── types/               # Tipos TypeScript
-│   └── index.ts
-└── index.ts            # Punto de entrada de la aplicación
-
-database-scripts/        # Scripts SQL
-├── schema.sql          # Esquema de base de datos
-├── seed.sql            # Datos de ejemplo
-└── README.md           # Documentación de scripts
+Pruebas-ClaudeCode/
+├── src/                      # Backend (Node.js + Express)
+│   ├── controllers/          # Lógica de negocio
+│   ├── routes/              # Definición de rutas API
+│   ├── database/            # Configuración de SQLite
+│   ├── types/               # Tipos TypeScript
+│   └── index.ts            # Punto de entrada del servidor
+│
+├── frontend/                # Frontend (React + Vite)
+│   ├── src/
+│   │   ├── pages/          # Páginas de la aplicación
+│   │   ├── services/       # Servicios API
+│   │   ├── types/          # Tipos TypeScript
+│   │   ├── App.tsx         # Componente principal
+│   │   └── main.tsx        # Punto de entrada
+│   ├── index.html
+│   └── vite.config.ts
+│
+├── database-scripts/        # Scripts SQL
+│   ├── schema.sql          # Esquema de base de datos
+│   ├── seed.sql            # Datos de ejemplo
+│   └── README.md           # Documentación
+│
+├── API_DOCUMENTATION.md     # Documentación del API
+├── package.json            # Dependencias del backend
+└── README.md              # Este archivo
 ```
 
 ## Endpoints Principales
@@ -151,12 +177,26 @@ curl -X POST http://localhost:3000/api/inventory/movements \
 
 ## Tecnologías Utilizadas
 
+### Backend
 - **Node.js** - Runtime de JavaScript
 - **Express** - Framework web
 - **TypeScript** - Tipado estático
-- **SQLite** - Base de datos
+- **SQLite** - Base de datos embebida
 - **CORS** - Middleware para CORS
 - **dotenv** - Gestión de variables de entorno
+
+### Frontend
+- **React 18** - Biblioteca de UI
+- **Vite** - Build tool y dev server
+- **TypeScript** - Tipado estático
+- **React Router** - Navegación
+- **Axios** - Cliente HTTP
+
+## Documentación Adicional
+
+- [Documentación del API Backend](./API_DOCUMENTATION.md)
+- [Scripts de Base de Datos](./database-scripts/README.md)
+- [Frontend README](./frontend/README.md)
 
 ## Licencia
 
