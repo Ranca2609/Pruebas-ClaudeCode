@@ -60,6 +60,23 @@ npm start
 
 El servidor estará disponible en `http://localhost:3000`
 
+## Scripts de Base de Datos
+
+La carpeta `database-scripts/` contiene scripts SQL para crear y poblar la base de datos:
+
+### Crear base de datos desde cero:
+```bash
+# Crear esquema (tablas, índices, vistas, triggers)
+sqlite3 database.db < database-scripts/schema.sql
+
+# Opcional: Cargar datos de ejemplo
+sqlite3 database.db < database-scripts/seed.sql
+```
+
+**Nota**: La aplicación crea automáticamente las tablas al iniciar si no existen. Los scripts son útiles si prefieres crear la base de datos manualmente o necesitas cargar datos de ejemplo.
+
+Ver [database-scripts/README.md](./database-scripts/README.md) para documentación detallada de los scripts.
+
 ## Estructura del Proyecto
 
 ```
@@ -75,6 +92,11 @@ src/
 ├── types/               # Tipos TypeScript
 │   └── index.ts
 └── index.ts            # Punto de entrada de la aplicación
+
+database-scripts/        # Scripts SQL
+├── schema.sql          # Esquema de base de datos
+├── seed.sql            # Datos de ejemplo
+└── README.md           # Documentación de scripts
 ```
 
 ## Endpoints Principales
